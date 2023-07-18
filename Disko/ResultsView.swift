@@ -27,6 +27,7 @@ struct ResultsView: View {
     
     @State private var sortOrder = [KeyPathComparator(\File.sizeInBytes, order: .reverse)]
     @State private var selection: File.ID?
+    @State private var showTrashReminder = false
 
     var body: some View {
         VStack {
@@ -55,6 +56,7 @@ struct ResultsView: View {
                             results.removeAll { displayedFile in
                                 displayedFile.id == file.id
                             }
+                            showTrashReminder = true
                         }
                     } label: {
                         Image(systemName: "trash")
@@ -68,6 +70,10 @@ struct ResultsView: View {
             }
             .onChange(of: sortOrder) { newOrder in
                 results.sort(using: newOrder)
+            }
+            if showTrashReminder {
+                Text("Your trashed files can be found and recovered in the system Trash.")
+                    .padding()
             }
         }
     }

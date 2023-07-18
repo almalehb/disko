@@ -16,6 +16,11 @@ struct ContentView: View {
 
     var body: some View {
         VStack (spacing: 15) {
+            Text("Welcome to Disko!")
+                .font(.title)
+             Text("Scan a folder for large files, or scan your entire system (which can take longer.)")
+                .padding()
+                .multilineTextAlignment(.center)
             Button {
                 // TODO
             } label: {
